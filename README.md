@@ -12,7 +12,6 @@ Create a [`NgrokConfiguration`](https://github.com/alexdlaird/java-ngrok-example
 class that lets us use the config to enable `ngrok` and pass it some useful parameters.
 
 ```java
-
 @Component
 @Getter
 @Setter
