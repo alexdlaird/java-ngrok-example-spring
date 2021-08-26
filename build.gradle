@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web"
-	implementation "com.github.alexdlaird:java-ngrok:1.5.0"
+	implementation "com.github.alexdlaird:java-ngrok:1.5.2"
 	compileOnly "org.projectlombok:lombok"
 	annotationProcessor "org.projectlombok:lombok"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
