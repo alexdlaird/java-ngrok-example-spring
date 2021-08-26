@@ -1,6 +1,15 @@
 .PHONY: all build clean install test
 
 SHELL := /usr/bin/env bash
+ifeq ($(OS),Windows_NT)
+	ifneq (,$(findstring /cygdrive/,$(PATH)))
+		GRADLE_BIN := ./gradlew
+	else
+		GRADLE_BIN := gradlew.bat
+	endif
+else
+	GRADLE_BIN := ./gradlew
+endif
 
 all: build
 
@@ -9,9 +18,6 @@ build:
 
 clean:
 	$(GRADLE_BIN) clean
-
-install:
-	$(GRADLE_BIN) install
 
 test:
 	$(GRADLE_BIN) test

@@ -8,7 +8,7 @@ with [Spring](https://spring.io/guides/gs/spring-boot/).
 
 ## Configuration
 
-Create a [`NgrokConfiguration`]()
+Create a [`NgrokConfiguration`](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/java/com/github/alexdlaird/ngrok/example/spring/conf/NgrokConfiguration.java)
 class that lets us use the config to enable `ngrok` and pass it some useful parameters.
 
 ```java
@@ -35,7 +35,7 @@ public class NgrokConfiguration {
 ```
 
 And pass parameters to our Spring application through
-[our config file]():
+[our config file](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/resources/application.properties):
 
 ```yaml
 spring.profiles.active=dev
@@ -45,7 +45,8 @@ ngrok.enabled=true
 ## Application Integration
 
 If `ngrok.enabled` config flag is set, we want to initialize `java-ngrok` when Spring is booting. An easy way to do
-this is by creating a `Component` with an `EventListener` that is executed when `WebServerInitializedEvent` is emitted.
+this is by creating [a `Component` with an `EventListener`](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/java/com/github/alexdlaird/ngrok/example/spring/NgrokWebServerEventListener.java)
+that is executed when `WebServerInitializedEvent` is emitted.
 
 ```java
 @Component
@@ -99,6 +100,6 @@ public class NgrokWebServerEventListener {
 
 Now Spring can be started by the usual means, setting `ngrok.enabled` in the config to open a tunnel.
 
-1. Run `make install` to build the application
-1. Start application with `java -jar build/java-ngrok-example-spring-1.0.0-SNAPSHOT.jar server config.yml`
+1. Run `make build` to build the application
+1. Start application with `java -jar build/libs/java-ngrok-example-spring-1.0.0-SNAPSHOT.jar`
 1. Check the logs for the `ngrok` tunnel's public URL, which should tunnel to  `http://localhost:8080`

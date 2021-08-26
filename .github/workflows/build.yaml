@@ -23,6 +23,6 @@ jobs:
           java-version: 11
           distribution: adopt
       - name: Install dependencies
-        run: make install
+        run: make build
       - name: Run tests
         run: make test
