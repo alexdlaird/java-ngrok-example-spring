@@ -77,7 +77,7 @@ public class NgrokWebServerEventListener {
                     .withJavaNgrokConfig(javaNgrokConfig)
                     .build();
 
-            final int port = Integer.parseInt(environment.getProperty("server.port", "8080"));
+            final int port = event.getWebServer().getPort();
 
             final CreateTunnel createTunnel = new CreateTunnel.Builder()
                     .withAddr(port)
