@@ -42,7 +42,7 @@ class JavaNgrokExampleSpringApplicationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void testHealthCheck() {
+    public void testHealthCheck() {
         final ResponseEntity<String> response = this.restTemplate.getForEntity("http://127.0.0.1:" + port + "/actuator/health", String.class);
         assertTrue("Healthcheck success", response.getStatusCode().is2xxSuccessful());
     }
