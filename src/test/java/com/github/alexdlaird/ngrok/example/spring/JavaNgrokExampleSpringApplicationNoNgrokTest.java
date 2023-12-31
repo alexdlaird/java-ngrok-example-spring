@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Alex Laird
+ * Copyright (c) 2023 Alex Laird
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -21,27 +21,30 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.alexdlaird.ngrok.example.spring.conf;
+package com.github.alexdlaird.ngrok.example.spring;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.ResponseEntity;
 
-@Component
-@Getter
-@Setter
-@ConfigurationProperties(prefix = "ngrok")
-public class NgrokConfiguration {
-    private boolean enabled;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-    private String region;
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+                properties = {"ngrok.enabled=false"})
+public class JavaNgrokExampleSpringApplicationNoNgrokTest {
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+    @LocalServerPort
+    private int port;
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    public void testHealthCheckNoNgrok() {
+        final ResponseEntity<String> response = this.restTemplate.getForEntity("http://127.0.0.1:" + port + "/actuator/health", String.class);
+        assertTrue("Healthcheck success", response.getStatusCode().is2xxSuccessful());
     }
 }
