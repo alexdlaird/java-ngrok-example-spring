@@ -66,7 +66,7 @@ public class NgrokWebServerEventListener {
     @EventListener
     public void onApplicationEvent(final WebServerInitializedEvent event) {
         // java-ngrok will only be installed, and should only ever be initialized, in a dev environment
-        if (ngrokConfiguration.isEnabled()) {
+        if (ngrokConfiguration.isEnabled() && System.getenv().containsKey("NGROK_AUTHTOKEN")) {
             final JavaNgrokConfig javaNgrokConfig = new JavaNgrokConfig.Builder()
                     .withRegion(nonNull(ngrokConfiguration.getRegion()) ? Region.valueOf(ngrokConfiguration.getRegion().toUpperCase()) : null)
                     .build();
