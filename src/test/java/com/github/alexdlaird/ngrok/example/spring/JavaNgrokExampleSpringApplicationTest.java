@@ -30,7 +30,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
-import static java.util.Objects.nonNull;
+import static com.github.alexdlaird.util.StringUtils.isNotBlank;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
@@ -45,7 +45,7 @@ public class JavaNgrokExampleSpringApplicationTest {
 
     @Test
     public void testHealthCheck() {
-        assumeTrue(nonNull(System.getenv("NGROK_AUTHTOKEN")), "NGROK_AUTHTOKEN environment variable not set");
+        assumeTrue(isNotBlank(System.getenv("NGROK_AUTHTOKEN")), "NGROK_AUTHTOKEN environment variable not set");
 
         final ResponseEntity<String> response = this.restTemplate.getForEntity("http://127.0.0.1:" + port + "/actuator/health", String.class);
         assertTrue("Healthcheck success", response.getStatusCode().is2xxSuccessful());
