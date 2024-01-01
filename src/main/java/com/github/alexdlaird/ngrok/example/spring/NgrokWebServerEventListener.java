@@ -38,6 +38,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import static com.github.alexdlaird.util.StringUtils.isNotBlank;
 import static java.util.Objects.nonNull;
 
 @Component
@@ -60,7 +61,7 @@ public class NgrokWebServerEventListener {
     @EventListener
     public void onApplicationEvent(final WebServerInitializedEvent event) {
         // java-ngrok will only be installed, and should only ever be initialized, in a dev environment
-        if (ngrokConfiguration.isEnabled() && System.getenv().containsKey("NGROK_AUTHTOKEN")) {
+        if (ngrokConfiguration.isEnabled() && isNotBlank(System.getenv("NGROK_AUTHTOKEN"))) {
             final JavaNgrokConfig javaNgrokConfig = new JavaNgrokConfig.Builder()
                     .withRegion(nonNull(ngrokConfiguration.getRegion()) ? Region.valueOf(ngrokConfiguration.getRegion().toUpperCase()) : null)
                     .build();
