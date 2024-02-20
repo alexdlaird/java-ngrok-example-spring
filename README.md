@@ -1,4 +1,4 @@
-[![Build](https://github.com/alexdlaird/java-ngrok-example-spring/actions/workflows/build.yml/badge.svg)](https://github.com/alexdlaird/java-ngrok-example-spring/actions/workflows/build.yml)
+[![Build](https://img.shields.io/github/actions/workflow/status/alexdlaird/java-ngrok-example-spring/build.yml)](https://github.com/alexdlaird/java-ngrok-example-spring/actions/workflows/build.yml)
 ![GitHub License](https://img.shields.io/github/license/alexdlaird/java-ngrok-example-spring)
 
 # java-ngrok Example - Spring
