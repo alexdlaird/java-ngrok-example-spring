@@ -20,6 +20,8 @@ public class NgrokConfiguration {
 
     private String region;
 
+    private String publicUrl;
+
     public boolean isEnabled() {
         return enabled;
     }
