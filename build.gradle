@@ -21,7 +21,7 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web"
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation "com.github.alexdlaird:java-ngrok:2.3.0"
-	testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.11.1'
 	compileOnly "org.projectlombok:lombok"
 	annotationProcessor "org.projectlombok:lombok"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
