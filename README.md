@@ -21,13 +21,7 @@ public class NgrokConfiguration {
 
     private String region;
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+    private String publicUrl;
 }
 ```
 
@@ -66,7 +60,7 @@ public class NgrokWebServerEventListener {
     @EventListener
     public void onApplicationEvent(final WebServerInitializedEvent event) {
         // java-ngrok will only be installed, and should only ever be initialized, in a dev environment
-        if (ngrokConfiguration.isEnabled() && isNotBlank(System.getenv("NGROK_AUTHTOKEN"))) {
+        if (ngrokConfiguration.isEnabled()) {
             final JavaNgrokConfig javaNgrokConfig = new JavaNgrokConfig.Builder()
                     .withRegion(nonNull(ngrokConfiguration.getRegion()) ? Region.valueOf(ngrokConfiguration.getRegion().toUpperCase()) : null)
                     .build();
@@ -80,11 +74,13 @@ public class NgrokWebServerEventListener {
                     .withAddr(port)
                     .build();
             final Tunnel tunnel = ngrokClient.connect(createTunnel);
+            final String publicUrl = tunnel.getPublicUrl();
 
-            LOGGER.info(String.format("ngrok tunnel \"%s\" -> \"http://127.0.0.1:%d\"", tunnel.getPublicUrl(), port));
+            LOGGER.info(String.format("ngrok tunnel \"%s\" -> \"http://127.0.0.1:%d\"",publicUrl, port));
 
             // Update any base URLs or webhooks to use the public ngrok URL
-            initWebhooks(tunnel.getPublicUrl());
+            ngrokConfiguration.setPublicUrl(publicUrl);
+            initWebhooks(publicUrl);
         }
     }
 
