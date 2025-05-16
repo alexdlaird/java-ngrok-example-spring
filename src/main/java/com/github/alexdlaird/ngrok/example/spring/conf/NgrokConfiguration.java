@@ -6,6 +6,7 @@
 
 package com.github.alexdlaird.ngrok.example.spring.conf;
 
+import com.github.alexdlaird.ngrok.NgrokClient;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class NgrokConfiguration {
     private boolean enabled;
 
-    private String region;
-
     private String publicUrl;
+
+    private NgrokClient ngrokClient;
 }

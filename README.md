@@ -19,8 +19,6 @@ class that lets us use the config to enable `ngrok` and pass it some useful para
 public class NgrokConfiguration {
     private boolean enabled;
 
-    private String region;
-
     private String publicUrl;
 }
 ```
@@ -61,11 +59,7 @@ public class NgrokWebServerEventListener {
     public void onApplicationEvent(final WebServerInitializedEvent event) {
         // java-ngrok will only be installed, and should only ever be initialized, in a dev environment
         if (ngrokConfiguration.isEnabled()) {
-            final JavaNgrokConfig javaNgrokConfig = new JavaNgrokConfig.Builder()
-                    .withRegion(nonNull(ngrokConfiguration.getRegion()) ? Region.valueOf(ngrokConfiguration.getRegion().toUpperCase()) : null)
-                    .build();
             final NgrokClient ngrokClient = new NgrokClient.Builder()
-                    .withJavaNgrokConfig(javaNgrokConfig)
                     .build();
 
             final int port = event.getWebServer().getPort();
