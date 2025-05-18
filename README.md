@@ -9,7 +9,7 @@ with [Spring](https://spring.io/guides/gs/spring-boot/).
 ## Configuration
 
 Create a [`NgrokConfiguration`](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/java/com/github/alexdlaird/ngrok/example/spring/conf/NgrokConfiguration.java)
-class that lets us use the config to enable `ngrok` and pass it some useful parameters.
+class that lets you use the config to enable `ngrok` and pass it some useful parameters.
 
 ```java
 @Component
@@ -23,8 +23,8 @@ public class NgrokConfiguration {
 }
 ```
 
-And pass parameters to our Spring application through
-[our config file](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/resources/application.properties):
+And pass parameters to your Spring application through
+[your config file](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/resources/application.properties):
 
 ```yaml
 spring.profiles.active=dev
@@ -33,7 +33,7 @@ ngrok.enabled=true
 
 ## Application Integration
 
-If `ngrok.enabled` config flag is set, we want to initialize `java-ngrok` when Spring is booting. An easy way to do
+If `ngrok.enabled` config flag is set, `java-ngrok` will be initialized when Spring is booting. An easy way to do
 this is by creating [a `Component` with an `EventListener`](https://github.com/alexdlaird/java-ngrok-example-spring/blob/main/src/main/java/com/github/alexdlaird/ngrok/example/spring/NgrokWebServerEventListener.java)
 that is executed when `WebServerInitializedEvent` is emitted.
 
