@@ -38,7 +38,7 @@ public class NgrokWebServerEventListener {
 
     @EventListener
     public void onApplicationEvent(final WebServerInitializedEvent event) {
-        // java-ngrok will only be installed, and should only ever be initialized, in a dev environment
+        // Only install and initialize ngrok if we're actually using it
         if (ngrokConfiguration.isEnabled()) {
             final NgrokClient ngrokClient = new NgrokClient.Builder()
                     .build();
@@ -61,6 +61,6 @@ public class NgrokWebServerEventListener {
     }
 
     private void initWebhooks(final String publicUrl) {
-        // Update inbound traffic via APIs to use the public-facing ngrok URL
+        // ... Implement updates necessary so inbound traffic uses the public-facing ngrok URL
     }
 }
