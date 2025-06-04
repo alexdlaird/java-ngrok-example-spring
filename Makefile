@@ -31,4 +31,4 @@ build-docker: build
 	docker build -t java-ngrok-example-spring .
 
 run-docker: env
-	docker run --env-file .env -it java-ngrok-example-spring
+	docker run --env-file .env -p 8080:8080 -it java-ngrok-example-spring
