@@ -28,5 +28,7 @@ jobs:
           distribution: adopt
       - name: Build
         run: make build
+      - name: Build Docker
+        run: make build-docker
       - name: Test
         run: make test

@@ -15,6 +15,9 @@ all: test
 
 install: build
 
+env:
+	touch .env
+
 build:
 	$(GRADLE_BIN) build -x test
 
@@ -23,3 +26,9 @@ clean:
 
 test:
 	$(GRADLE_BIN) test
+
+build-docker: build
+	docker build -t java-ngrok-example-spring .
+
+docker-run: env
+	docker run --env-file .env -it java-ngrok-example-spring
