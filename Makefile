@@ -1,4 +1,4 @@
-.PHONY: all build clean install test
+.PHONY: env all build clean install test build-docker run-docker
 
 SHELL := /usr/bin/env bash
 ifeq ($(OS),Windows_NT)
@@ -30,5 +30,5 @@ test:
 build-docker: build
 	docker build -t java-ngrok-example-spring .
 
-docker-run: env
+run-docker: env
 	docker run --env-file .env -it java-ngrok-example-spring
