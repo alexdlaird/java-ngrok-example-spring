@@ -13,6 +13,8 @@ RUN mkdir -p /root/.config/ngrok
 RUN echo "version: 2\nweb_addr: 0.0.0.0:4040" >> /root/.config/ngrok/ngrok.yml
 
 # Provision your Java application
+ENV NGROK_BINARY_PATH="/usr/local/bin/ngrok"
+VOLUME /tmp
 COPY build/libs/java-ngrok-example-spring-1.0.0-SNAPSHOT.jar /root/java-ngrok-example-spring-1.0.0-SNAPSHOT.jar
 CMD ["java", "-jar", "/root/java-ngrok-example-spring-1.0.0-SNAPSHOT.jar"]
 

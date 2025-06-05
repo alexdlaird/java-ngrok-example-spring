@@ -31,4 +31,6 @@ build-docker: build
 	docker build -t java-ngrok-example-spring .
 
 run-docker: env
-	docker run --env-file .env -p 8080:8080 -it java-ngrok-example-spring
+	# Here we're mounting the container as read-only to fully validate java-ngrok is not modifying
+	# the filesystem during its startup, since we want to use the provisioned binary and config
+	docker run --env-file .env -p 8080:8080 --read-only -it java-ngrok-example-spring

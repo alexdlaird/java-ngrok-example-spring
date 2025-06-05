@@ -12,12 +12,16 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.nio.file.Path;
+
 @Component
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "ngrok")
 public class NgrokConfiguration {
     private boolean enabled;
+
+    private Path binaryPath;
 
     private String publicUrl;
 
