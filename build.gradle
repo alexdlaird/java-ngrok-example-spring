@@ -26,6 +26,12 @@ dependencies {
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
+bootJar {
+	manifest {
+		attributes "X-Muppets": "42"
+	}
+}
+
 test {
 	useJUnitPlatform()
 }
