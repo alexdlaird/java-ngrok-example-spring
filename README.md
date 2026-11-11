@@ -3,9 +3,9 @@
 
 # java-ngrok Example - Spring
 
-This is an example project that shows how to easily integrate [`java-ngrok`](https://github.com/alexdlaird/java-ngrok)
-with [Spring](https://spring.io/guides/gs/spring-boot/), as [summarized in the docs](https://alexdlaird.github.io/java-ngrok/integration/#spring). It also
-includes a `Dockerfile` to show how to [containerize `java-ngrok`](https://alexdlaird.github.io/java-ngrok/integration/#docker).
+This is an example project that shows how to easily integrate [`java-ngrok`](https://java-ngrok.alexlaird.com/)
+with [Spring](https://spring.io/guides/gs/spring-boot/), as [summarized in the docs](https://java-ngrok.alexlaird.com/integration/#spring). It also
+includes a `Dockerfile` to show how to [containerize `java-ngrok`](https://java-ngrok.alexlaird.com/integration/#docker).
 
 ## Running
 
